@@ -1,47 +1,42 @@
+Seoul Bike Sharing Demand Prediction
 
-- Repository Overview:
-  - This repository contains a database designed for a bike store, comprising three tables: brands, categories, and products.
+Problem Description:
 
-- Dataset Description:
-  - The dataset was crafted for exploratory data analysis and database management for the bike store.
-  - It includes information about different bikes, brands, and categories.
-  - Tables are linked through their ID columns, with the products table referencing categories and brands tables.
+Rental bikes are introduced in urban cities to enhance mobility comfort, necessitating stable supply prediction for public accessibility. Predicting bike counts per hour is crucial for ensuring availability and reducing waiting time.
 
-- Table Structures:
-  - Products Table:
-    - Unique identifiers for each bike (product_id).
-    - Bike name (product_name).
-    - Associated brand ID (brand_id).
-    - Associated category ID (category_id).
-    - Manufacturing year (model_year).
-    - Price (list_price).
-  - Categories Table:
-    - Unique identifiers for each category (category_id).
-    - Category names (category_name).
-  - Brands Table:
-    - Unique identifiers for each brand (brand_id).
-    - Brand names (brand_name).
+Data Description:
 
-- SQL File Contents:
-  - The SQL file contains various queries used for data exploration and manipulation:
-    - Selecting specific columns from one or more tables.
-    - Filtering data based on specific conditions.
-    - Grouping and aggregating data based on certain columns.
-    - Joining tables to combine data from multiple sources.
+The dataset includes weather data (Temperature, Humidity, Windspeed, etc.) and hourly bike rental counts along with date information.
 
-- Results and Insights:
-  - Insights obtained from the data include:
-    - Identification of brands with the most bikes in a specific category.
-    - Determination of average bike prices within specific categories.
-    - Identification of the most expensive bikes in specific categories.
+Attribute Information:
+- Date: Year-month-day
+- Rented Bike Count: Count of bikes rented per hour
+- Hour: Hour of the day
+- Temperature: Temperature in Celsius
+- Humidity: Percentage
+- Windspeed: m/s
+- Visibility: 10m
+- Solar Radiation: MJ/m2
+- Rainfall: mm
+- Snowfall: cm
+- Seasons: Winter, Spring, Summer, Autumn
+- Holiday: Holiday/No holiday
+- Functional Day: NoFunc (Non-Functional Hours), Fun (Functional hours)
 
-- Future Work:
-  - Future endeavors may involve:
-    - Adding additional data to the tables.
-    - Conducting further exploration to gain deeper insights.
-    - Utilizing the database for larger applications or analytical projects for the bike store.
+Preprocessing:
+- Checked for null values and removed duplicates.
+- Converted "date" column into separate columns for year, month, and day.
+- Changed int64 columns into category columns.
+- Removed correlated features like Dew point temperature.
+- Handled outliers and filled null values with mean values.
+- Conducted exploratory data analysis (EDA) on categorical and numerical variables.
 
-- Instructions for Use:
-  - Ensure a SQL database management system is installed on your computer.
-  - Create an empty database and import the provided SQL file.
-  - Connect to the database using a SQL client and execute the queries as needed.
+Modeling:
+- Used various regression models like Linear Regression, Ridge Regression, Elastic Net, Random Forest Regressor, XGBoost Regressor.
+- Tuned hyperparameters using GridSearchCV for Random Forest and XGBoost models.
+- Evaluated models based on metrics like Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and R-squared (R2) score.
+
+Conclusion:
+- Hour of the day, season, and weather conditions significantly influence bike rentals.
+- Extreme Gradient Boosting (XGBoost) and Random Forest Regressor with hyperparameter tuning performed best, providing the lowest RMSE and highest R-squared scores.
+- Project aims at predicting bike demand, aiding in bike sharing service optimization for urban mobility.
